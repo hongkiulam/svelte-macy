@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Component } from "svelte-typescript-component";
+  import { Macy } from "svelte-macy";
 </script>
 
 <style>
@@ -17,5 +17,5 @@
 </style>
 
 <main>
-  <Component name="World" />
+  <Macy name="World" />
 </main>

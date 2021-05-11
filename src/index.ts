@@ -1,1 +1,1 @@
-export { default as Component } from "./Component.svelte";
+export { default as Macy } from "./Macy.svelte";

@@ -1,12 +1,12 @@
 {
-  "name": "svelte-typescript-component-template",
+  "name": "svelte-macy",
   "svelte": "dist/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.umd.js",
   "types": "dist/ts/index.d.ts",
+  "description": "A masonry component for Svelte",
   "scripts": {
-    "prebuild": "rm -rf ./dist",
-    "build": "rollup -c",
+    "build": "rm -rf ./dist && rollup -c",
     "dev": "rollup -c -w",
     "validate": "svelte-check",
     "prepublishOnly": "npm run build"
@@ -34,5 +34,12 @@
   },
   "keywords": [
     "svelte"
-  ]
+  ],
+  "engines": {
+    "node": "14",
+    "pnpm": "6"
+  },
+  "dependencies": {
+    "macy": "^2.5.1"
+  }
 }
