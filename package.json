@@ -5,6 +5,16 @@
   "main": "dist/index.umd.js",
   "types": "dist/ts/index.d.ts",
   "description": "A masonry component for Svelte",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hongkiulam/svelte-macy.git"
+  },
+  "author": {
+    "name": "Haydon Lam",
+    "url": "https://github.com/hongkiulam"
+  },
   "scripts": {
     "build": "rm -rf ./dist && rollup -c",
     "dev": "rollup -c -w",
@@ -16,6 +26,7 @@
     "dist"
   ],
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-typescript": "^6.0.0",
     "@tsconfig/svelte": "^1.0.10",
@@ -32,14 +43,18 @@
     "tslib": "^2.0.3",
     "typescript": "^4.0.3"
   },
+  "dependencies": {
+    "macy": "^2.5.1"
+  },
   "keywords": [
-    "svelte"
+    "svelte",
+    "macy",
+    "masonry",
+    "typescript",
+    "svelte-component"
   ],
   "engines": {
     "node": "14",
     "pnpm": "6"
-  },
-  "dependencies": {
-    "macy": "^2.5.1"
   }
 }

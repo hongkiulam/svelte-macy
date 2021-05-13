@@ -1,5 +1,21 @@
 <script lang="ts">
-  export let name: String = "component";
+  import { onDestroy, onMount } from "svelte";
+  import _Macy from "macy";
+  import type { MacyInit, MacyInstance, MacyOptions } from "./types";
+  
+  const Macy: MacyInit = _Macy;
+
+  export let options: Omit<MacyOptions, "container">;
+  export let macy: MacyInstance = undefined;
+
+  onMount(() => {
+    macy = Macy({ container: "#macy", ...options });
+  });
+  onDestroy(() => {
+    macy?.remove();
+  });
 </script>
 
-<h1>Hello {name}</h1>
+<div id="macy">
+  <slot />
+</div>
