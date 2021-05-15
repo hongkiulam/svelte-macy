@@ -1,4 +1,4 @@
-export type MacyOptions = {
+type MacyOptionsWithContainer = {
   container: string;
   columns?: number;
   trueOrder?: boolean;
@@ -57,8 +57,8 @@ export type MacyInstance = {
   emit: (key: string, data: Object) => void;
 };
 
-export type MacyInit = (options: MacyOptions) => MacyInstance;
-
+export type MacyInit = (options: MacyOptionsWithContainer) => MacyInstance;
+export type MacyOptions = Omit<MacyOptionsWithContainer, "container">;
 export type MacyEvents = {
   EVENT_IMAGE_COMPLETE: "macy.images.complete";
   EVENT_IMAGE_ERROR: "macy.image.error";
