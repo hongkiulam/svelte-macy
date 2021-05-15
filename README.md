@@ -40,7 +40,7 @@ Here is a list of supported options along with their default values
     margin: 0,
     waitForImages: false,
     useOwnImageLoader: false,
-    mobileFirst: true,
+    mobileFirst: false,
     breakAt: undefined,
     cancelLegacy: false,
     useContainerForBreakpoints: false,
