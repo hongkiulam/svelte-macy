@@ -5,7 +5,7 @@
   "main": "dist/index.umd.js",
   "types": "dist/ts/index.d.ts",
   "description": "A masonry component for Svelte",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
