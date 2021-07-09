@@ -77,7 +77,7 @@ macy.js also provides some constants that are used with its events system, namel
 
 ```html
 <script>
-    import { EVENTS } from 'svelte-macy';
+  import { EVENTS } from "svelte-macy";
 </script>
 ```
 
@@ -104,6 +104,30 @@ To import type definitions
     MacyEvents,
   } from "svelte-macy";
 </script>
+```
+
+#### SvelteKit/ SSR
+
+Unfortunately the macy.js dependency relies on `window`/ `document` which is not available on the server. A workaround is to
+only import this component on the client.
+
+```html
+<script>
+  import { browser } from "$app/env";
+  import { onMount } from "svelte";
+
+  let MacyComponent;
+  if (browser) {
+    onMount(async () => {
+      MacyComponent = (await import("svelte-macy")).Macy;
+    });
+  }
+  let macy;
+</script>
+
+<svelte:component this={MacyComponent} bind:macy options={{}}>
+  <div />
+</svelte:component>
 ```
 
 #### License
