@@ -407,15 +407,15 @@ var app = (function () {
     function create_fragment$1(ctx) {
     	let div;
     	let current;
-    	const default_slot_template = /*#slots*/ ctx[3].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
+    	const default_slot_template = /*#slots*/ ctx[4].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[3], null);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			if (default_slot) default_slot.c();
     			attr_dev(div, "id", "macy");
-    			add_location(div, file$1, 14, 0, 341);
+    			add_location(div, file$1, 21, 0, 562);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -431,8 +431,8 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (default_slot) {
-    				if (default_slot.p && (!current || dirty & /*$$scope*/ 4)) {
-    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[2], dirty, null, null);
+    				if (default_slot.p && (!current || dirty & /*$$scope*/ 8)) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[3], dirty, null, null);
     				}
     			}
     		},
@@ -469,9 +469,11 @@ var app = (function () {
     	const Macy = _Macy;
     	let { options } = $$props;
     	let { macy = undefined } = $$props;
+    	let mounted = false;
 
     	onMount(() => {
     		$$invalidate(0, macy = Macy(Object.assign({ container: "#macy" }, options)));
+    		$$invalidate(2, mounted = true);
     	});
 
     	onDestroy(() => {
@@ -489,7 +491,7 @@ var app = (function () {
     	$$self.$$set = $$props => {
     		if ("options" in $$props) $$invalidate(1, options = $$props.options);
     		if ("macy" in $$props) $$invalidate(0, macy = $$props.macy);
-    		if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
+    		if ("$$scope" in $$props) $$invalidate(3, $$scope = $$props.$$scope);
     	};
 
     	$$self.$capture_state = () => ({
@@ -498,19 +500,34 @@ var app = (function () {
     		_Macy,
     		Macy,
     		options,
-    		macy
+    		macy,
+    		mounted
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("options" in $$props) $$invalidate(1, options = $$props.options);
     		if ("macy" in $$props) $$invalidate(0, macy = $$props.macy);
+    		if ("mounted" in $$props) $$invalidate(2, mounted = $$props.mounted);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [macy, options, $$scope, slots];
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*mounted, macy, options*/ 7) {
+    			// if options changes, recreate
+    			if (mounted) {
+    				macy === null || macy === void 0
+    				? void 0
+    				: macy.remove();
+
+    				$$invalidate(0, macy = Macy(Object.assign({ container: "#macy" }, options)));
+    			}
+    		}
+    	};
+
+    	return [macy, options, mounted, $$scope, slots];
     }
 
     class Macy_1 extends SvelteComponentDev {
