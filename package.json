@@ -57,7 +57,6 @@
     "svelte-component"
   ],
   "engines": {
-    "node": ">=12.x.x <=16.x.x",
     "pnpm": "6"
   }
 }
