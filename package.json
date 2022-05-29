@@ -55,8 +55,5 @@
     "masonry",
     "typescript",
     "svelte-component"
-  ],
-  "engines": {
-    "pnpm": "6"
-  }
+  ]
 }
