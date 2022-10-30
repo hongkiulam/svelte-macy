@@ -5,21 +5,22 @@ A Svelte Masonry component which wraps [macy.js](https://github.com/bigbite/macy
 #### Installation
 
 ```bash
-npm install svelte-macy
+npm install svelte-macy macy
 ```
 
 #### Usage
 
 ```html
 <script>
-  import { Macy } from "svelte-macy";
+	import Macy from 'svelte-macy'; // default export
+	import { Macy } from 'svelte-macy'; // named export
 </script>
 
 <Macy>
-  <div>Child 1</div>
-  <div>Child 2</div>
-  <div>Child 3</div>
-  <div>Child 4</div>
+	<div>Child 1</div>
+	<div>Child 2</div>
+	<div>Child 3</div>
+	<div>Child 4</div>
 </Macy>
 ```
 
@@ -57,17 +58,17 @@ Using Svelte's bind directive
 
 ```html
 <script>
-  let macy;
+	let macy;
 
-  function someFunction() {
-    if (macy) {
-      macy.recalculate();
-    }
-  }
+	function someFunction() {
+		if (macy) {
+			macy.recalculate();
+		}
+	}
 </script>
 
-<Macy bind:macy={macy}>
-  <div />
+<Macy bind:macy="{macy}">
+	<div />
 </Macy>
 ```
 
@@ -77,7 +78,7 @@ macy.js also provides some constants that are used with its events system, namel
 
 ```html
 <script>
-  import { EVENTS } from "svelte-macy";
+	import { EVENTS } from 'svelte-macy';
 </script>
 ```
 
@@ -89,7 +90,7 @@ For the component, simply import as you would normally. This will provide typing
 
 ```html
 <script lang="ts">
-  import { Macy } from "svelte-macy";
+	import { Macy } from 'svelte-macy';
 </script>
 ```
 
@@ -97,13 +98,22 @@ To import type definitions
 
 ```html
 <script lang="ts">
-  import type {
-    MacyInit,
-    MacyInstance,
-    MacyOptions,
-    MacyEvents,
-  } from "svelte-macy";
+	import type { MacyInit, MacyInstance, MacyOptions, MacyEvents } from 'svelte-macy';
 </script>
+```
+
+##### Component Type
+
+```ts
+// top level import
+import type { Macy } from 'svelte-macy';
+import type Macy from 'svelte-macy';
+
+let MacyComponentType: typeof Macy;
+
+// type import
+let MacyComponentType: typeof import('svelte-macy').default;
+let MacyComponentType: typeof import('svelte-macy').Macy;
 ```
 
 #### SvelteKit/ SSR
@@ -113,20 +123,19 @@ only import this component on the client.
 
 ```html
 <script>
-  import { browser } from "$app/env";
-  import { onMount } from "svelte";
+	import { onMount } from "svelte";
 
-  let MacyComponent;
-  if (browser) {
-    onMount(async () => {
-      MacyComponent = (await import("svelte-macy")).Macy;
-    });
-  }
-  let macy;
+	let MacyComponent: typeof import("svelte-macy").Macy;
+
+	onMount(async () => {
+	  MacyComponent = (await import("svelte-macy")).Macy // or .default;
+	});
+
+	let macy;
 </script>
 
-<svelte:component this={MacyComponent} bind:macy options={{}}>
-  <div />
+<svelte:component this="{MacyComponent}" bind:macy options="{{}}">
+	<div />
 </svelte:component>
 ```
 

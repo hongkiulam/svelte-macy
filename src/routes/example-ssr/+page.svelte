@@ -1,14 +1,11 @@
 <script lang="ts">
-  import { browser } from "$app/env";
   import { onMount } from "svelte";
-  import type { MacyInstance } from "../../../src/index";
+  import type { MacyInstance } from "$lib/index";
 
-  let Macy;
-  if (browser) {
+  let Macy: typeof import('$lib/Macy.svelte').default;
     onMount(async () => {
-      Macy = (await import("../../../src/index")).Macy;
+      Macy = (await import("$lib/Macy.svelte")).default;
     });
-  }
   let macy: MacyInstance;
 </script>
 

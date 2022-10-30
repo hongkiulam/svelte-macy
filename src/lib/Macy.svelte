@@ -1,15 +1,14 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import _Macy from "macy";
-  import type { MacyInit, MacyInstance, MacyOptions } from "./types";
-
-  const Macy: MacyInit = _Macy;
+  import type { MacyInit, MacyInstance, MacyOptions } from "../types";
 
   export let options: MacyOptions;
-  export let macy: MacyInstance = undefined;
+  export let macy: MacyInstance | undefined = undefined;
 
+  let Macy: MacyInit
   let mounted = false;
-  onMount(() => {
+  onMount(async () => {
+    Macy = (await import('macy')).default
     macy = Macy({ container: "#macy", ...options });
     mounted = true;
   });

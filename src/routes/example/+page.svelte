@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Macy } from "../../src/index";
-  import type { MacyInstance } from "../../src/index";
+	import type { MacyInstance } from "$lib";
+  import Macy from "$lib/Macy.svelte";
 
   let macy: MacyInstance;
 </script>
