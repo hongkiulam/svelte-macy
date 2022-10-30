@@ -5,7 +5,7 @@ A Svelte Masonry component which wraps [macy.js](https://github.com/bigbite/macy
 #### Installation
 
 ```bash
-npm install svelte-macy macy
+npm install svelte-macy
 ```
 
 #### Usage
