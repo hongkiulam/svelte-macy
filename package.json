@@ -1,7 +1,7 @@
 {
 	"name": "svelte-macy",
 	"description": "A masonry component for Svelte",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
