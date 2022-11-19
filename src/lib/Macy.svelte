@@ -1,28 +1,29 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
-  import type { MacyInit, MacyInstance, MacyOptions } from "../types";
+	import { onDestroy, onMount } from 'svelte';
+	import _Macy from 'macy';
+	import type { MacyInit, MacyInstance, MacyOptions } from '../types';
 
-  export let options: MacyOptions;
-  export let macy: MacyInstance | undefined = undefined;
+	const Macy: MacyInit = _Macy;
 
-  let Macy: MacyInit
-  let mounted = false;
-  onMount(async () => {
-    Macy = (await import('macy')).default
-    macy = Macy({ container: "#macy", ...options });
-    mounted = true;
-  });
-  onDestroy(() => {
-    macy?.remove();
-  });
+	export let options: MacyOptions;
+	export let macy: MacyInstance | undefined = undefined;
 
-  // if options changes, recreate
-  $: if (mounted) {
-    macy?.remove();
-    macy = Macy({ container: "#macy", ...options });
-  }
+	let mounted = false;
+	onMount(() => {
+		macy = Macy({ container: '#macy', ...options });
+		mounted = true;
+	});
+	onDestroy(() => {
+		macy?.remove();
+	});
+
+	// if options changes, recreate
+	$: if (mounted) {
+		macy?.remove();
+		macy = Macy({ container: '#macy', ...options });
+	}
 </script>
 
 <div id="macy">
-  <slot />
+	<slot />
 </div>
